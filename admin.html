@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Painel Admin - Agent Personal Driver</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .admin-form {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 25px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .admin-form input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+        }
+
+        .admin-form label {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: -5px;
+            display: block;
+        }
+
+        .admin-btn {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .admin-btn.danger {
+            background-color: #e74c3c;
+        }
+
+        .back-link {
+            text-align: center;
+            color: #000000;
+            text-decoration: underline;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="pinOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
+        <img src="img/logosvg.svg" alt="Admin Badge" style="width: 150px; margin-bottom: 30px;">
+        <h2 style="color: #ffffff; font-family: 'Orbitron', sans-serif; margin-bottom: 20px;">Acesso Restrito</h2>
+        <input type="password" id="pinInput" placeholder="Digite o PIN" style="width: 80%; max-width: 300px; padding: 15px; border-radius: 12px; border: none; text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 15px; font-family: 'Outfit', sans-serif;">
+        <button id="btnPin" style="background: #ffffff; color: #000000; border: none; padding: 15px 35px; font-weight: 700; border-radius: 10px; font-size: 16px; cursor: pointer; font-family: 'Outfit', sans-serif;">Acessar Painel</button>
+        <p id="pinError" style="color: #e74c3c; margin-top: 15px; font-weight: 600; display: none;">PIN Incorreto!</p>
+        <a href="index.html" style="color: #666; text-decoration: underline; margin-top: 25px;">Voltar à Página Principal</a>
+    </div>
+
+    <div class="mobile-container" id="adminContent" style="display: none;">
+        <header class="header">
+            <img src="img/logosvg.svg" alt="Agent Personal Driver" class="logo-img">
+            <p style="margin-top: 15px; font-weight: 600; text-transform: uppercase;">Administração do Portal</p>
+        </header>
+
+        <form class="admin-form" id="placeForm">
+            <h3>Adicionar Ponto Turístico</h3>
+            
+            <div>
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" placeholder="Ex: Cristo Redentor" required>
+            </div>
+            
+            <div>
+                <label for="foto">URL da Foto</label>
+                <input type="url" id="foto" placeholder="Link da imagem (https://...)" required>
+            </div>
+            
+            <div>
+                <label for="tempo">Tempo de visita</label>
+                <input type="text" id="tempo" placeholder="Ex: 1h ~ 2hs" required>
+            </div>
+            
+            <div>
+                <label for="preco">Preço do Local</label>
+                <input type="text" id="preco" placeholder="Ex: R$120 - R$150" required>
+            </div>
+            
+            <div>
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" placeholder="Ex: Parque Nacional da Tijuca, Rio de Janeiro" autocomplete="off" required>
+                <div id="addressSuggestions" style="background: #f9f9f9; color: #000; border-radius: 5px; max-height: 150px; overflow-y: auto; display: none; margin-top: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
+            </div>
+            
+            <input type="hidden" id="chosenLat">
+            <input type="hidden" id="chosenLon">
+
+            <button type="submit" class="admin-btn">Salvar Card</button>
+            <button type="button" class="admin-btn danger" id="btnLimpar">Apagar todos os Dados</button>
+            <button type="button" class="admin-btn" id="btnExport" style="background-color: #2ecc71; color: #000;">📥 Baixar data.js (Exportar)</button>
+        </form>
+
+        <form class="admin-form" id="adviceForm">
+            <h3>Adicionar Conselho (Advice)</h3>
+            
+            <div>
+                <label for="advTitulo">Título</label>
+                <input type="text" id="advTitulo" placeholder="Ex: Roubo" required>
+            </div>
+            
+            <div>
+                <label for="advIcone">URL do Ícone (SVG/Imagem)</label>
+                <input type="text" id="advIcone" placeholder="Link da imagem (Ex: img/icone.svg)" required>
+            </div>
+            
+            <div>
+                <label for="advTexto">Texto do Conselho</label>
+                <textarea id="advTexto" placeholder="Ex: Tenha muito cuidado com o seu celular..." required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ccc; font-family: 'Outfit', sans-serif; resize: vertical; min-height: 80px; margin-top: 5px;"></textarea>
+            </div>
+
+            <button type="submit" class="admin-btn">Salvar Conselho</button>
+        </form>
+
+        <div class="admin-list-container" id="adminListContainer" style="margin-top: 30px; background: #ffffff; border-radius: 20px; padding: 20px; color: #000;">
+            <h3 style="margin-bottom: 15px; font-weight: 700;">Gerenciar Cards</h3>
+            <div id="cardsList" style="display: flex; flex-direction: column; gap: 12px;"></div>
+        </div>
+
+        <a href="index.html" class="back-link" style="margin-top: 25px; display: block; margin-bottom: 30px;">Voltar para o App</a>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

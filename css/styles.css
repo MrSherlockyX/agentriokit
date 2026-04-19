@@ -1,0 +1,554 @@
+/* Resets e Configurações Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove highlight azul em botões mobile */
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Container que simula tela mobile num browser desktop */
+.mobile-container {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================================
+   Header & Logo
+   ======================================================== */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+/* ========================================================
+   Title Row (Kit + Lang Toggle)
+   ======================================================== */
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.survival-title {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.lang-selector {
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    padding: 4px;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 16px;
+    cursor: pointer;
+    color: #000000;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* ========================================================
+   Profile Widget
+   ======================================================== */
+.profile-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* O blob branco atrás do avatar correspondente à imagem */
+.avatar-blob {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    /* Shape orgânico */
+    z-index: 0;
+}
+
+.avatar-img {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    /* Remova este border-radius quando usar PNG transparente do seu avatar em 3D */
+    object-fit: cover;
+    z-index: 1;
+}
+
+.profile-text {
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 300;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.profile-text .greeting {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.profile-text p {
+    margin-bottom: 4px;
+}
+
+.profile-text .thanks {
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+/* ========================================================
+   Contact Info (Social Circles)
+   ======================================================== */
+.contact-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.circle {
+    width: 55px;
+    height: 55px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle:hover {
+    transform: scale(1.1);
+}
+
+.circle-pix {
+    border: 2px solid #ffd900;
+    position: relative;
+}
+
+.tip-balloon {
+    position: absolute;
+    bottom: -24px;
+    background-color: #ffd900;
+    color: #000000;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    animation: floatingPulse 2s infinite ease-in-out;
+}
+
+.tip-balloon::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #ffd900;
+}
+
+@keyframes floatingPulse {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(3px) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+/* ========================================================
+   Tabs / Menu Selector
+   ======================================================== */
+.tabs-container {
+    background-color: #ffffff;
+    border-radius: 40px;
+    display: flex;
+    padding: 6px;
+    margin-bottom: 25px;
+}
+
+.tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    border-radius: 35px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* ========================================================
+   Tab Content & Cards placeholder
+   ======================================================== */
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-pane {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-pane.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 30px;
+    width: 100%;
+    overflow: hidden;
+    /* prevents image overflow */
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+.tour-card-header {
+    width: 100%;
+    height: 180px;
+    position: relative;
+}
+
+.tour-card-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Gradiente na parte de baixo da foto para destaque do texto */
+.tour-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 15px 20px;
+}
+
+.tour-card-overlay h3 {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.tour-card-body {
+    padding: 20px;
+    position: relative;
+}
+
+.tour-info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Ícones falsos da info do card (podemos por SVG depois) */
+.icon-circle {
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.btn-go {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 35px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-go:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================================
+   Advice Cards
+   ======================================================== */
+.advice-card {
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 25px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #000000;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.advice-icon-wrap {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.advice-icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.advice-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.advice-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.advice-content p {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ========================================================
+   Pagination Bottom Dots
+   ======================================================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #555555;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ffffff;
+}
+
+/* ========================================================
+   Tips Modal / Payment Menu
+   ======================================================== */
+.tips-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.tips-modal-content {
+    background-color: #ffffff;
+    color: #000000;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.payment-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 12px 15px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+
+.payment-row img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.payment-info strong {
+    font-size: 14px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.payment-info span {
+    font-size: 13px;
+    color: #555;
+    margin-top: 2px;
+}
+
+.btn-copy {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-copy:active {
+    background-color: #2ecc71;
+}
+
+.btn-copy.copied {
+    background-color: #2ecc71;
+    color: #fff;
+}

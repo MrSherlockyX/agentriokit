@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Agent Personal Driver - Rio's Survival Kit</title>
+    <!-- Fontes modernas baseadas no mockup: Orbitron (Logo) e Outfit (Texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="mobile-container">
+
+        <!-- CABEÇALHO / LOGO -->
+        <header class="header">
+            <img src="img/logosvg.svg" alt="Agent Personal Driver" class="logo-img">
+        </header>
+
+        <!-- BARRA DE TÍTULO & IDIOMAS -->
+        <div class="title-row">
+            <h3 class="survival-title">RIO'S SURVIVAL KIT</h3>
+            <div class="lang-selector">
+                <button class="lang-btn" data-lang="pt">PT/Br</button>
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DO PERFIL DO MOTORISTA -->
+        <section class="profile-widget">
+            <div class="avatar-wrapper">
+                <div class="avatar-blob"></div>
+                <img src="img/ian.png" alt="Avatar Ian Magalhães" class="avatar-img" id="avatarImg">
+            </div>
+            <div class="profile-text">
+                <h4 class="greeting" data-i18n="greeting">Hello passenger!</h4>
+                <p data-i18n="intro">My name is Ian Magalhães and I am very happy you are interested in my guide!</p>
+                <p data-i18n="tip">Feel free to leave a tip.</p>
+                <p class="thanks" data-i18n="thanks">Thank you!</p>
+            </div>
+        </section>
+
+        <!-- INFORMAÇÕES DE CONTATO -->
+        <section class="contact-info">
+            <p data-i18n="contact">Contact me for trips and daily rates</p>
+            <div class="social-links">
+                <!-- Links para redes sociais/contato -->
+                <a href="https://wa.me/qr/B4CZWYNKEOCSB1" class="circle" title="WhatsApp">
+                    <img src="https://img.icons8.com/?size=100&id=16733&format=png&color=000000" alt="WhatsApp"
+                        style="width: 28px; height: 28px; object-fit: contain;">
+                </a>
+                <a href="https://www.instagram.com/ian.magals/" class="circle" title="Instagram">
+                    <img src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000" alt="Instagram"
+                        style="width: 28px; height: 28px; object-fit: contain;">
+                </a>
+                <a href="#" class="circle circle-pix" title="PIX">
+                    <span class="tip-balloon" data-i18n="tip_balloon">gorgeta</span>
+                    <img src="https://img.icons8.com/?size=100&id=7749&format=png&color=000000" alt="Gorjeta"
+                        style="width: 28px; height: 28px; object-fit: contain;">
+                </a>
+            </div>
+        </section>
+
+        <!-- SELETOR DE ABAS -->
+        <div class="tabs-container">
+            <button class="tab active" data-tab="advices" data-i18n="tab_advices">Advices</button>
+            <button class="tab" data-tab="tourist-places" data-i18n="tab_tourist">Tourist Places</button>
+        </div>
+
+        <!-- CONTEÚDO DAS ABAS (CARDS) -->
+        <main class="content-container">
+            <div class="tab-pane active" id="advices">
+                <!-- Conteúdo para "Advices" a ser definido depois -->
+            </div>
+            <div class="tab-pane" id="tourist-places">
+                <!-- Cards dinâmicos inseridos pelo script.js -->
+            </div>
+        </main>
+
+        <!-- TIPS MODAL -->
+        <div id="tipsModal" class="tips-modal" style="display: none;">
+            <div class="tips-modal-content">
+                <button id="closeTips" class="close-btn">&times;</button>
+                <h3 data-i18n="support_me">Apoie meu trabalho!</h3>
+                <p data-i18n="support_text" style="font-size: 14px; margin-bottom: 20px; color: #666;">Escolha a melhor forma para deixar a sua gorjeta.</p>
+                
+                <div class="payment-row">
+                    <img src="https://img.icons8.com/?size=100&id=uqpbD9vhCDEQ&format=png&color=000000" alt="Pix">
+                    <div class="payment-info">
+                        <strong>PIX (Celular)</strong>
+                        <span id="pixKey">21 986209215</span>
+                    </div>
+                    <button class="btn-copy" data-copy="21986209215" data-i18n="copy_btn">Copiar</button>
+                </div>
+
+                <div class="payment-row" style="margin-bottom: 5px;">
+                    <img src="https://img.icons8.com/?size=100&id=34525&format=png&color=000000" alt="PayPal">
+                    <div class="payment-info">
+                        <strong>PayPal (E-mail)</strong>
+                        <span id="paypalKey">iancarvalhorj@gmail.com</span>
+                    </div>
+                    <button class="btn-copy" data-copy="iancarvalhorj@gmail.com" data-i18n="copy_btn">Copiar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
